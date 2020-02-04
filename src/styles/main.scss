@@ -1,0 +1,46 @@
+.hero-body {
+  background-image: url('https://66.media.tumblr.com/e43fccafc15a97db5edec8eefb4410cf/tumblr_p7etubrYah1x7zaduo1_1280.gifv');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.not-found {
+  background-image: url('https://live.staticflickr.com/6082/6123557237_92b8374792_b.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.card {
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+
+  .card-image {
+    margin-top: 20px;
+  }
+
+  figure > img {
+    max-height: 400px;
+    width: initial;
+    margin: 0 auto;
+  }
+}
+
+.card-content {
+    margin-top: 10px;
+}
+
+.show {
+  figure > img {
+    width: initial;
+    max-height: 600px;
+    margin: 0 auto;
+  }
+
+  textarea {
+    width: 400px;
+    height: 100px;
+  }
+}
