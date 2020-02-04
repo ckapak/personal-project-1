@@ -19,6 +19,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
   console.log('Mongo is connected')
 })
 
+app.use(express.static(`${__dirname}/dist`))
+
 app.use(bodyParser.json()) // registering body parser as the first peice of middleware, creating `req.body` on any reguest containing data sent in the body, (POST AND PUT REQUESTS), next is called automatically from here
 
 app.use(logger) // next up is the logger middleware, check this out in './lib/logger', is simply console.logs the incoming request method and url, then calls next()
@@ -26,5 +28,7 @@ app.use(logger) // next up is the logger middleware, check this out in './lib/lo
 // Remember, calling next() from middleware allows the request to fall through to the next piece of middleware, so in our case here, bodyParser calls next itself to allow the request to fall through to the logger, then in the logger, we call next() to allow the request to fall through to the router.
 
 app.use('/api', router) // Our last piece of middleware, the router, this is where the request will fall through into our custom router, the HTTP verb method and request url will be matched inside the router, and relay that request to its appropriate controller, see more in './config/router.js'
+
+app.use('/*', (req, res) => res.sendFile(`${__dirname}/dist/index.html`))
 
 app.listen(port, () => console.log(`Express is up and running on ${port}`)) // Our call to app.listen to start the process.
