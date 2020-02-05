@@ -6,8 +6,7 @@ function register(req, res) {
   User
     .create(req.body)
     .then(user => res.status(201).json({ 'message': `Thanks for registering ${user.username}` }))
-    // .catch(err => res.status(400).json(err))
-    .catch(err => res.json(err))
+    .catch(err => res.status(400).json(err))
 }
 
 function login(req, res) {

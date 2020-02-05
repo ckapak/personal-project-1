@@ -34,7 +34,7 @@ class Register extends React.Component {
       this.setState({ errors: err.response.data.errors })
     }
   }
-
+  
   render() {
     return (
       <section className="section">
@@ -52,7 +52,7 @@ class Register extends React.Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                {this.state.errors.username && <small className="help is-danger">{this.state.errors.username}</small>}
+                {this.state.errors.username && <small className="help is-danger">{this.state.errors.username.message}</small>}
               </div>
               <div className="field">
                 <label className="label">Email</label>
@@ -64,7 +64,7 @@ class Register extends React.Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                {this.state.errors.email && <small className="help is-danger">{this.state.errors.email}</small>}
+                {this.state.errors.email && <small className="help is-danger">{this.state.errors.email.message}</small>}
               </div>
               <div className="field">
                 <label className="label">Password</label>
@@ -77,7 +77,7 @@ class Register extends React.Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                {this.state.errors.password && <small className="help is-danger">{this.state.errors.password}</small>}
+                {this.state.errors.password && <small className="help is-danger">{this.state.errors.password.message}</small>}
               </div>
               <div className="field">
                 <label className="label">Password Confirmation</label>
@@ -90,7 +90,7 @@ class Register extends React.Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                {this.state.errors.passwordConfirmation && <small className="help is-danger">{this.state.errors.passwordConfirmation}</small>}
+                {this.state.errors.passwordConfirmation && <small className="help is-danger">{this.state.errors.passwordConfirmation.message}</small>}
               </div>
               <div className="field">
                 <div className="control">

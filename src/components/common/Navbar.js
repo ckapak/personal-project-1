@@ -6,7 +6,6 @@ import Auth from '../../lib/auth'
 class Navbar extends React.Component {
   state = { navOpen: false }
     
-
   toggleNavbar = () => {
     this.setState({ navOpen: !this.state.navOpen })
   }

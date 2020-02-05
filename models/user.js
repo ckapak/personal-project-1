@@ -1,4 +1,5 @@
 const mongoose = require('mongoose') // * needed to create a new schema and model
+const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require('bcrypt') // * our library used to hash our users passwords
 
 const userSchema = new mongoose.Schema({ // * Bulding a schema 
@@ -45,5 +46,7 @@ userSchema
     }
     next() // * now move on to saving
   })
+
+userSchema.plugin(uniqueValidator)
 
 module.exports = mongoose.model('User', userSchema) // * exporting our models, with all its new methods and functiionality to be used in the auth controller. see /controllers/auth.js

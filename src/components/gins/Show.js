@@ -5,7 +5,7 @@ import Auth from '../../lib/auth'
 
 class Show extends React.Component {
 
-  state = { 
+  state = {
     gin: {},
     text: ''
   }
@@ -14,8 +14,8 @@ class Show extends React.Component {
     const ginId = this.props.match.params.id
     try {
       const response = await axios.get(`/api/gins/${ginId}`)
-      this.setState({ 
-        gin: response.data 
+      this.setState({
+        gin: response.data
       })
       console.log(response.data)
     } catch (err) {
@@ -53,17 +53,16 @@ class Show extends React.Component {
 
   isOwner = () => {
     console.log(this.state.gin.user)
-    // console.log(Auth.getPayload().sub, 'sub')
     return Auth.getPayload().sub === this.state.gin.user._id
   }
 
   render() {
-    if (!this.state.gin._id) 
+    if (!this.state.gin._id)
       return null
-      
-    const { gin } = this.state
-    console.log(gin.user._id, 'USER')
 
+    const { gin } = this.state
+    console.log(this.state.gin)
+    console.log(this.state.text, 'text')
     return (
       <section className="section show">
         <div className="container">
@@ -86,18 +85,22 @@ class Show extends React.Component {
               <form className="form title is-4" onSubmit={this.handleSubmit}>
                 Tell us what you think!
                 <hr />
-                <textarea name="text" onChange={this.handleChange} 
-                  value={this.state.text} 
+                <textarea name="text" onChange={this.handleChange}
+                  value={this.state.text}
                   placeholder="Type your comment here...maximum character length is 50"></textarea>
                 <br />
-                <input type="submit" value="Submit"/>
+                <input type="submit" value="Submit" />
               </form>
-              <hr /> 
+              <div className="comment-text">{gin.comments.map(comment =>
+                <div key={comment._id}>
+                  {comment.text}
+                </div>)}</div>
+              <hr />
               {this.isOwner() &&
-              <>
-                <Link to={`/gins/${gin._id}/edit`} className="button is-warning">Edit My Gin</Link>
-                <button onClick={this.handleDelete} className="button is-danger">Delete My Gin</button>
-              </>
+                <>
+                  <Link to={`/gins/${gin._id}/edit`} className="button is-warning">Edit My Gin</Link>
+                  <button onClick={this.handleDelete} className="button is-danger">Delete My Gin</button>
+                </>
               }
             </div>
           </div>
