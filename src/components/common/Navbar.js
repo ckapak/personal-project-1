@@ -23,19 +23,22 @@ class Navbar extends React.Component {
   }
   
   render() {
-    const { navbarOpen } = this.state
     return (
       <nav className="navbar is-dark">
         <div className="container">
           <div className="navbar-brand">
             <Link className="navbar-item" to="/">GINventory</Link>
-            <a className={`navbar-burger ${navbarOpen ? 'is-active' : ''}`} onClick={this.toggleNavbar}>
-              <span></span>
-              <span></span>
-              <span></span>
+
+            <a 
+              className={`navbar-burger ${this.state.navOpen ? 'is-active' : ''}`}
+              onClick={this.toggleNavbar}
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
             </a>
           </div>
-          <div className={`navbar-menu ${navbarOpen ? 'is-active' : ''}`}>
+          <div className={`navbar-menu ${this.state.navOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
               <Link className="navbar-item" to="/gins">See our GINventory</Link>
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}

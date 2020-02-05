@@ -1,7 +1,10 @@
 .hero-body {
   background-image: url('https://66.media.tumblr.com/e43fccafc15a97db5edec8eefb4410cf/tumblr_p7etubrYah1x7zaduo1_1280.gifv');
+  background-position: center center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
+  background-color: rgb(224, 224, 50);
   min-height: 100vh;
 }
 
@@ -45,9 +48,3 @@
   }
 }
 
-// @media screen and (max-width:840px) {
-
-//   .hero-body {
-//     background-image: url('https://66.media.tumblr.com/e43fccafc15a97db5edec8eefb4410cf/tumblr_p7etubrYah1x7zaduo1_1280.gifv');
-//   }
-// }
