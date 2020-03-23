@@ -8,36 +8,36 @@ function index(req, res) {
     .catch(err => res.json(err)) // * if it fails, console logging the error for now
 }
 
-function create(req, res) {
+function create(req, res, next) {
   req.body.user = req.currentUser
   Gin 
     .create(req.body) // * using the .create() method, as we're making new gin, this will validate the incoming req.body to make sure it fits the schema for the model, thats the blueprint for how a gin should look defined in './models/gin.js'
     .then(createdGin => res.status(201).json(createdGin)) // * then, if it succesfully finds it, we send them all back in the response as json
-    .catch(err => res.json(err)) // * if it fails, console logging the error for now
+    .catch(next) 
 }
 
-function show(req, res) {
+function show(req, res, next) {
   Gin 
     .findById(req.params.id) // using a method to find a single gin by its mongo id, this will return a single object, not in an array
     .populate('user')
     .then(gin => {
-      if (!gin) return res.status(404).json({ message: 'Not found' })
+      if (!gin) throw new Error('Not found')
       res.status(200).json(gin)
     })
-    .catch(err => res.json(err))
+    .catch(next)
 }
 
-function update(req, res) { 
-  //* best practice to UPDATE rather than EDIT 
+function update(req, res, next) {
   Gin
-    .findById(req.params.id) // * first find the gin to be updated
+    .findById(req.params.id)
     .then(gin => {
-      if (!gin) return res.status(404).json({ message: 'Not Found ' }) //* if we dont find it, respond 404 not found
-      Object.assign(gin, req.body) // * but if we do, merge the existing object with the changes sent in the request
-      return gin.save()  // * save it to rerun its validations
+      if (!gin) throw new Error('Not Found')
+      if (!gin.user.equals(req.currentUser._id)) return res.status(401).json({ message: 'Unauthorised' })
+      Object.assign(gin, req.body) 
+      return gin.save()  
     })
-    .then(updatedGin => res.status(202).json(updatedGin)) //* send response with the updated gin
-    .catch(err => res.json(err))
+    .then(updatedGin => res.status(202).json(updatedGin)) 
+    .catch(next)
 }
 
 function destroy(req, res) {

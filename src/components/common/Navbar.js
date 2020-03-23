@@ -36,12 +36,14 @@ class Navbar extends React.Component {
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
             </a>
           </div>
           <div className={`navbar-menu ${this.state.navOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
               <Link className="navbar-item" to="/gins">See our GINventory</Link>
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
+              {Auth.isAuthenticated() && <Link className="navbar-item" to="/profile">Profile</Link>}
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
               {Auth.isAuthenticated() && <Link className="navbar-item" to="/gins/new">Make a new gin</Link>}
               {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item">Logout</a>}

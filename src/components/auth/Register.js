@@ -18,12 +18,6 @@ class Register extends React.Component {
     this.setState({ data, errors }) // * set the new data object into state to replace the old one
   }
 
-  // handleChange = ({ target: { name, value } }) => {
-  //   const data = { ...this.state.data, [name]: value }
-  //   const errors = { ...this.state.errors, [name]: '' }
-  //   this.setState({ data, errors })
-  // }
-
   handleSubmit = async e => {
     e.preventDefault()
 

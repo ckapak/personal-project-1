@@ -15,6 +15,7 @@ import New from './components/gins/New'
 import Edit from './components/gins/Edit'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import Profile from './components/auth/Profile'
 
 const App = () => (
   <BrowserRouter>
@@ -25,6 +26,7 @@ const App = () => (
         <Route exact path="/" component={Home} />
         <SecureRoute path="/gins/:id/edit" component={Edit} />
         <SecureRoute path="/gins/new" component={New} />
+        <SecureRoute path="/profile" component={Profile} />
         <Route path="/gins" component={Gins} />
         <Route path="/gin/:id" component={Show} />
         <Route path="/register" component={Register} />

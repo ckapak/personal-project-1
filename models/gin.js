@@ -20,4 +20,6 @@ const ginSchema = new mongoose.Schema({ //* created a schema for our collection,
 // * When the gins create controller is used to attempt to make a new Gin, 
 // * the object sent must pass all the validations, or it will be rejected
 
+ginSchema.plugin(require('mongoose-unique-validator'))
+
 module.exports = mongoose.model('Gin', ginSchema) // * registered our schema to a model and exported it
