@@ -12,7 +12,7 @@ The task was to build a RESTful Express API from scratch with React in one week.
 ​
 ## Technologies
 
-- Javascript
+- JavaScript
 - Bulma
 - React.js
 - axios
